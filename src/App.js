@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import SparkTheme from './SparkTheme';
+import Styled from './Styled';
+import CSSed from './CSSed';
+import Switch from 'react-switch';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [isLight, setLightMode] = useState(true);
+
+    return (
+        <div>
+            <h3>Toggle Theme</h3>
+            <Switch checked={isLight} onChange={setLightMode} />
+            <SparkTheme mode={isLight ? 'light' : 'dark'}>
+                <Section>
+                    <Styled />
+                </Section>
+                <Section>
+                    <CSSed />
+                </Section>
+            </SparkTheme>
+        </div>
+    );
 }
 
 export default App;
+
+const Section = styled.div`
+    margin-bottom: 24px;
+`;

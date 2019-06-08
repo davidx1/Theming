@@ -1,0 +1,21 @@
+@import 'themify';
+
+.main {
+    @include themify(){
+        border: 1px solid black;
+        box-sizing: border-box;
+        background-color: themed('bg');
+    }
+}
+
+.title{
+    @include themify(){
+        color: themed('txt1');
+    }
+}
+
+.subtitle{
+    @include themify(){
+        color: themed('txt2');
+    }
+}

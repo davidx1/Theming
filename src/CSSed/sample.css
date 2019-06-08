@@ -1,0 +1,27 @@
+.light .main {
+    background-color: white;
+    height: 300px;
+}
+
+.light .title {
+    color: #333;
+
+}
+
+.light .subtitle {
+    color: #777;
+}
+
+.dark .main {
+    background-color: black;
+    height: 300px;
+}
+
+.dark .title {
+    color: #ccc;
+
+}
+
+.dark .subtitle {
+    color: #888;
+}
