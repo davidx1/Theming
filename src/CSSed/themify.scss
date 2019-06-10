@@ -5,7 +5,6 @@
  */
 @mixin themify() {
   @each $theme, $map in $themes {
-    :global(.#{$theme}) & {
       $theme-map: () !global;
       @each $key, $submap in $map {
         $value: map-get(map-get($themes, $theme), '#{$key}');
@@ -13,7 +12,6 @@
       }
       @content;
     }
-  }
 }
 
 @function themed($key) {

@@ -1,18 +1,41 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { withTheme } from 'styled-components';
-import styles from './App.module.scss';
-import SparkTheme from '../SparkTheme';
+import stylesObj from './App.module.scss';
+import SparkTheme, { ThemeContext } from '../SparkTheme';
+import _ from 'lodash';
+
+function useStyles() {
+    const theme = useContext(ThemeContext);
+    return _.mapValues(stylesObj, className => `${className}--${theme}`);
+}
+
+function DarkAgain() {
+    return (
+        <SparkTheme mode="dark">
+            <div class={useStyles().main}>
+                <h2 class={useStyles().subtitle}>This is Permenently light Themed</h2>
+            </div>
+        </SparkTheme>
+    );
+}
+
+function LightSection() {
+    return (
+        <SparkTheme mode="light">
+            <div class={useStyles().main}>
+                <h2 class={useStyles().subtitle}>This is Permenently light Themed</h2>
+            </div>
+            <DarkAgain />
+        </SparkTheme>
+    );
+}
 
 const CSSed = ({ theme }) => {
     return (
-        <div class={styles.main}>
-            <h1 class={styles.title}>Sass</h1>
-            <h2 class={styles.subtitle}>This is made with css modules</h2>
-            <SparkTheme mode="dark">
-                <div class={styles.main}>
-                    <h2 class={styles.subtitle}>This is Permenently dark Themed</h2>
-                </div>
-            </SparkTheme>
+        <div class={useStyles().main}>
+            <h1 class={useStyles().title}>Sass</h1>
+            <h2 class={useStyles().subtitle}>This is made with css modules</h2>
+            <LightSection />
         </div>
     );
 };
