@@ -1,19 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { withTheme } from 'styled-components';
-import stylesObj from './App.module.scss';
+import stylesObj from './styles.module.scss';
 import SparkTheme, { ThemeContext } from '../SparkTheme';
 import _ from 'lodash';
 
 function useStyles() {
     const theme = useContext(ThemeContext);
-    return _.mapValues(stylesObj, className => `${className}--${theme}`);
+    const mappedStyle = useMemo(
+        () => _.mapValues(stylesObj, className => `${className}--${theme}`),
+        [theme]
+    );
+    return mappedStyle;
 }
 
 function DarkAgain() {
     return (
         <SparkTheme mode="dark">
-            <div class={useStyles().main}>
-                <h2 class={useStyles().subtitle}>This is Permenently light Themed</h2>
+            <div className={useStyles().main}>
+                <h2 className={useStyles().subtitle}>This is Permenently dark Themed</h2>
             </div>
         </SparkTheme>
     );
@@ -22,8 +26,8 @@ function DarkAgain() {
 function LightSection() {
     return (
         <SparkTheme mode="light">
-            <div class={useStyles().main}>
-                <h2 class={useStyles().subtitle}>This is Permenently light Themed</h2>
+            <div className={useStyles().main}>
+                <h2 className={useStyles().subtitle}>This is Permenently light Themed</h2>
             </div>
             <DarkAgain />
         </SparkTheme>
@@ -32,9 +36,9 @@ function LightSection() {
 
 const CSSed = ({ theme }) => {
     return (
-        <div class={useStyles().main}>
-            <h1 class={useStyles().title}>Sass</h1>
-            <h2 class={useStyles().subtitle}>This is made with css modules</h2>
+        <div className={useStyles().main}>
+            <h1 className={useStyles().title}>Sass</h1>
+            <h2 className={useStyles().subtitle}>This is made with css modules</h2>
             <LightSection />
         </div>
     );

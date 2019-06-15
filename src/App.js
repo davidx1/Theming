@@ -11,7 +11,7 @@ function App() {
     return (
         <div>
             <h3>Toggle Theme</h3>
-            <Switch checked={isLight} onChange={setLightMode} />
+            <Switch checked={isLight} onChange={(checked)=>setLightMode(checked)} />
             <SparkTheme mode={isLight ? 'light' : 'dark'}>
                 <Section>
                     <Styled />

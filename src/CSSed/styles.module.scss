@@ -1,4 +1,4 @@
-@import 'themify';
+@import '../themify';
 @include themify(){
     .main {
         border: 1px solid black;
