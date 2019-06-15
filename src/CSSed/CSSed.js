@@ -14,7 +14,7 @@ function Section() {
     const { mappedStyle: styles, theme } = useStyles();
     return (
         <div className={styles.main}>
-            <h2 className={styles.subtitle}>This is Permenently {theme} Themed</h2>
+            <h2 className={styles.subtitle}>This is {theme} Themed via scss</h2>
         </div>
     );
 }

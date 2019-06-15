@@ -10,8 +10,10 @@ function App() {
 
     return (
         <div>
-            <h3>Toggle Theme</h3>
-            <Switch checked={isLight} onChange={(checked)=>setLightMode(checked)} />
+            <FlexRow>
+                <h2>Toggle Theme</h2>
+                <Switch checked={isLight} onChange={checked => setLightMode(checked)} />
+            </FlexRow>
             <SparkTheme mode={isLight ? 'light' : 'dark'}>
                 <Section>
                     <Styled />
@@ -28,4 +30,9 @@ export default App;
 
 const Section = styled.div`
     margin-bottom: 24px;
+`;
+
+const FlexRow = styled.div`
+    display: flex;
+    align-items: center;
 `;
