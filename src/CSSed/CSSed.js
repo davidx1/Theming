@@ -14,10 +14,10 @@ function Section() {
 }
 
 const CSSed = () => {
-    const { mappedStyle: styles } = useStyles();
+    const { mappedStyle: styles } = useStyles(stylesObj);
     return (
         <div className={styles.main}>
-            <h1 className={styles.title}>Sass</h1>
+            <h1 className={styles.title}>Scss</h1>
             <Section />
             <SparkTheme mode="light">
                 <Section />
