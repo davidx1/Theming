@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext } from 'react';
 import { withTheme } from 'styled-components';
 import stylesObj from './styles.module.scss';
 import SparkTheme, { ThemeContext } from '../SparkTheme';
@@ -6,40 +6,31 @@ import _ from 'lodash';
 
 function useStyles() {
     const theme = useContext(ThemeContext);
-    const mappedStyle = useMemo(
-        () => _.mapValues(stylesObj, className => `.${theme} ${className} `),
-        [theme]
-    );
-    return mappedStyle;
+    const mappedStyle = _.mapValues(stylesObj, className => `${className}_${theme}`);
+    return { mappedStyle, theme };
 }
 
-function DarkAgain() {
+function Section() {
+    const { mappedStyle: styles, theme } = useStyles();
     return (
-        <SparkTheme mode="dark">
-            <div className={useStyles().main}>
-                <h2 className={useStyles().subtitle}>This is Permenently dark Themed</h2>
-            </div>
-        </SparkTheme>
+        <div className={styles.main}>
+            <h2 className={styles.subtitle}>This is Permenently {theme} Themed</h2>
+        </div>
     );
 }
 
-function LightSection() {
+const CSSed = () => {
+    const { mappedStyle: styles } = useStyles();
     return (
-        <SparkTheme mode="light">
-            <div className={useStyles().main}>
-                <h2 className={useStyles().subtitle}>This is Permenently light Themed</h2>
-            </div>
-            <DarkAgain />
-        </SparkTheme>
-    );
-}
-
-const CSSed = ({ theme }) => {
-    return (
-        <div className={useStyles().main}>
-            <h1 className={useStyles().title}>Sass</h1>
-            <h2 className={useStyles().subtitle}>This is made with css modules</h2>
-            <LightSection />
+        <div className={styles.main}>
+            <h1 className={styles.title}>Sass</h1>
+            <Section />
+            <SparkTheme mode="light">
+                <Section />
+                <SparkTheme mode="dark">
+                    <Section />
+                </SparkTheme>
+            </SparkTheme>
         </div>
     );
 };

@@ -12,7 +12,7 @@
         $theme-map: map-merge($theme-map, (#{$key}: $value)) !global;
       }
 
-      @at-root #{&}_#{$theme}{
+      @at-root #{&}:global(_#{$theme}){
         @content;
       }
 

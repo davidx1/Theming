@@ -3,24 +3,11 @@ import styled from 'styled-components';
 import { theme } from 'styled-tools';
 import SparkTheme from '../SparkTheme';
 
-function DarkAgain() {
+function Section() {
     return (
-        <SparkTheme mode="dark">
-            <StyledDiv>
-                <Subtitle>This is section is always dark themed</Subtitle>
-            </StyledDiv>
-        </SparkTheme>
-    );
-}
-
-function LightSection() {
-    return (
-        <SparkTheme mode="light">
-            <StyledDiv>
-                <Subtitle>This is section is always light themed</Subtitle>
-            </StyledDiv>
-            <DarkAgain />
-        </SparkTheme>
+        <StyledDiv>
+            <Subtitle>This is section is always light themed</Subtitle>
+        </StyledDiv>
     );
 }
 
@@ -29,7 +16,12 @@ const Styled = () => {
         <StyledDiv>
             <Title>Styled-Component</Title>
             <Subtitle>This is a made with styled components</Subtitle>
-            <LightSection />
+            <SparkTheme mode="light">
+                <Section />
+                <SparkTheme mode="dark">
+                    <Section />
+                </SparkTheme>
+            </SparkTheme>
         </StyledDiv>
     );
 };
