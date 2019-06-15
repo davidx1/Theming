@@ -7,7 +7,7 @@ import _ from 'lodash';
 function useStyles() {
     const theme = useContext(ThemeContext);
     const mappedStyle = useMemo(
-        () => _.mapValues(stylesObj, className => `${className}--${theme}`),
+        () => _.mapValues(stylesObj, className => `.${theme} ${className} `),
         [theme]
     );
     return mappedStyle;
